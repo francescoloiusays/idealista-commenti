@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Risultati</title>
+<script>globalThis.__IC_TEST_URL = 'https://www.idealista.it/vendita-case/milano-milano/';</script>
+<script src="mock-chrome.js"></script>
+<style>body{font-family:Arial;background:#f5f5f5;padding:20px} article{background:#fff;border:1px solid #ddd;border-radius:6px;padding:14px;margin:0 0 12px;width:520px} a.item-link{font-weight:bold;color:#222;display:block}</style>
+</head><body>
+<article><a class="item-link" href="https://www.idealista.it/immobile/11111111/">Trilocale in via Ripamonti</a><div>329.000 €</div><a href="https://www.idealista.it/immobile/11111111/#foto">foto</a></article>
+<article><a class="item-link" href="https://www.idealista.it/immobile/22222222/">Bilocale in Corso Lodi</a><div>245.000 €</div></article>
+<article><a class="item-link" href="/immobile/33333333/">Quadrilocale a Porta Romana</a><div>610.000 €</div></article>
+<article><a class="item-link" href="/immobile/44444444/">Monolocale a Lambrate</a><div>159.000 €</div></article>
+<pre id="results"></pre>
+<script src="../extension/styles.js"></script>
+<script src="../extension/content.js"></script>
+<script>
+setTimeout(() => {
+  const b = [...document.querySelectorAll('.ic-badge')].map(x => x.textContent);
+  const okk = JSON.stringify(b) === JSON.stringify(['💬 3','💬 12','💬 1']) && !document.getElementById('idealista-commenti');
+  document.getElementById('results').textContent = JSON.stringify({badges:b, calls: window.__mock.calls});
+  document.title = okk ? 'PASS' : 'FAIL';
+}, 1500);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test backend e service worker
+        working-directory: worker
+        run: node --test test/*.test.js
+      - name: Controllo sintassi estensione
+        run: |
+          for f in extension/*.js; do node --check "$f"; done
+          python3 -m json.tool extension/manifest.json > /dev/null

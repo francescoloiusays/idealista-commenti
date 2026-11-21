@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Trilocale via Ripamonti — finta pagina annuncio</title>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; color: #333; }
+  .topbar { background: #1f1f1f; height: 56px; }
+  .detail-container { display: flex; gap: 24px; max-width: 1100px; margin: 0 auto; padding: 24px; }
+  .detail-info { flex: 1; min-width: 0; }
+  .side { width: 300px; background: #fff; height: 260px; border: 1px solid #ddd; border-radius: 6px; }
+  .gallery { height: 220px; background: linear-gradient(135deg,#c9d6df,#e2e8ec); border-radius: 6px; }
+  h1 { font-size: 24px; margin: 18px 0 6px; } .price { font-size: 26px; font-weight: bold; }
+  .desc { background:#fff; padding:16px; border-radius:6px; border:1px solid #ddd; line-height:1.5; }
+</style>
+<script>
+  globalThis.__IC_TEST_URL = 'https://www.idealista.it/immobile/34567890/';
+</script>
+<script src="mock-chrome.js"></script>
+</head>
+<body>
+  <div class="topbar"></div>
+  <main class="detail-container">
+    <section class="detail-info">
+      <div class="gallery"></div>
+      <h1>Trilocale in via Ripamonti, Vigentino, Milano</h1>
+      <div class="price">329.000 €</div>
+      <p>3 locali · 78 m² · 2º piano con ascensore</p>
+      <div class="desc">Luminoso trilocale ristrutturato nel 2015, composto da ingresso, soggiorno con cucina a vista, due camere e bagno finestrato. Cantina e box.</div>
+    </section>
+    <aside class="side"></aside>
+  </main>
+  <pre id="results"></pre>
+  <script src="../extension/styles.js"></script>
+  <script src="../extension/content.js"></script>
+  <script src="steps.js"></script>
+</body>
+</html>

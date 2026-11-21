@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Idealista Commenti",
+  "short_name": "Commenti",
+  "version": "1.0.0",
+  "description": "Aggiunge i commenti sotto gli annunci di idealista: risposte, reazioni con le emoji, GIF e immagini, con il tuo profilo Chrome.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk1EFxYR+5RJB67p8TYKFtoxFfTiKfvsVE/y5XblK71uil0Dt4qsYJ2OB2T8H+sIEwEWE8HyhFTaOdm9dCFUeaj2uFaypqOPhCzh2opFVkeTNOw/3yMBJBUUAvfsT/iPzn6mrgnXrmzUMJo1G733jp7wlTaE3KLM8uq0yuLljdg0G+rkluj4wAY0kfUvvX35SscxRJ9pLOc0Zl5/SDpk0fHNEJGFZ+/1E206Zw4h0wO+FZmhO9lLVMz1f3jGmqrPxMMXDsA6q6se55keSVRJ93xR9KdebBQaD264A1qO/dnmW07L6QZm6yf3HKTVsZslsdg5hnJsCLrOkzia4ZDrHQwIDAQAB",
+  "minimum_chrome_version": "116",
+  "permissions": ["identity", "storage"],
+  "host_permissions": [
+    "https://*.googleusercontent.com/*",
+    "https://*.giphy.com/*"
+  ],
+  "oauth2": {
+    "client_id": "INSERISCI_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["openid", "profile"]
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.idealista.it/*",
+        "https://www.idealista.com/*",
+        "https://www.idealista.pt/*"
+      ],
+      "js": ["styles.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Idealista Commenti",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "options_page": "popup.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
