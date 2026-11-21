@@ -10,11 +10,11 @@ GOOGLE_CLIENT_ID = "740197553369-l64p9r56ij3kd4b6ra0btuaim13q14qi.apps.googleuse
 [[d1_databases]]
 binding = "DB"
 database_name = "idealista-commenti"
-database_id = "INSERISCI_DATABASE_ID"
+database_id = "2d374f72-9a20-4b49-842b-25d36ecfa9dd"
 
 # Immagini dei commenti (Workers KV: niente carta di credito richiesta)
 [[kv_namespaces]]
 binding = "MEDIA"
-id = "INSERISCI_KV_ID"
+id = "12b58afa4fd94b79aa86da66d89a4c1e"
 
 # La chiave Giphy è un secret:  npx wrangler secret put GIPHY_API_KEY
