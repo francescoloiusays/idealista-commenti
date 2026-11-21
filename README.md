@@ -12,6 +12,8 @@ Estensione per Chrome che aggiunge una sezione **commenti** sotto gli annunci di
 
 ![Commenti sotto un annuncio](docs/screenshot.png)
 
+**Scarica l’estensione:** [francescoloiusays/commenti-per-idealista](https://github.com/francescoloiusays/commenti-per-idealista/releases/latest) · **Server:** `https://idealista-commenti.francesco-loiudice-02.workers.dev` (deploy automatico da `worker/` a ogni push su `main` tramite Cloudflare Workers Builds).
+
 ## Come funziona
 
 ```
