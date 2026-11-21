@@ -1,4 +1,4 @@
-# Idealista Commenti
+# Commenti per idealista
 
 Estensione per Chrome che aggiunge una sezione **commenti** sotto gli annunci di [idealista](https://www.idealista.it) (.it, .com, .pt).
 
@@ -22,10 +22,11 @@ extension/   Estensione Chrome (Manifest V3)
 worker/      Backend su Cloudflare Workers
   src/index.js    API REST
   schema.sql      database D1 (utenti, commenti, reazioni, upload)
+                  le immagini sono salvate in Workers KV
 test-ui/     Pagine finte di idealista per provare l'interfaccia senza backend
 ```
 
-I commenti devono essere visibili a tutti, quindi serve un piccolo server condiviso. Il backend gira su **Cloudflare Workers**, e il piano gratuito basta e avanza: i commenti vanno su **D1** (SQLite), le immagini su **R2** e le GIF arrivano da GIPHY tramite il Worker, così la chiave API resta segreta.
+I commenti devono essere visibili a tutti, quindi serve un piccolo server condiviso. Il backend gira su **Cloudflare Workers**, e il piano gratuito basta e avanza: i commenti vanno su **D1** (SQLite), le immagini su **Workers KV** (nessuna carta di credito richiesta) e le GIF arrivano da GIPHY tramite il Worker, così la chiave API resta segreta.
 
 L’estensione chiede a Chrome un token OAuth (`chrome.identity.getAuthToken`, scope `openid profile`). Il Worker lo verifica presso Google, controlla che sia stato emesso per il client ID dell’estensione e salva solo `id`, nome e foto del profilo. L’email non viene salvata.
 
@@ -55,7 +56,7 @@ npm install
 npx wrangler login
 
 npx wrangler d1 create idealista-commenti        # copia il database_id in wrangler.toml
-npx wrangler r2 bucket create idealista-commenti-media
+npx wrangler kv namespace create MEDIA            # copia l'id in wrangler.toml
 npm run db:init                                   # crea le tabelle
 
 npx wrangler secret put GIPHY_API_KEY             # chiave da https://developers.giphy.com

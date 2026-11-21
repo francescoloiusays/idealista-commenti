@@ -5,15 +5,16 @@ compatibility_date = "2025-09-01"
 [vars]
 # Client ID OAuth di tipo "Estensione di Chrome" (vedi README).
 # Se ne hai più di uno, separali con una virgola.
-GOOGLE_CLIENT_ID = "INSERISCI_CLIENT_ID.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = "740197553369-l64p9r56ij3kd4b6ra0btuaim13q14qi.apps.googleusercontent.com"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "idealista-commenti"
 database_id = "INSERISCI_DATABASE_ID"
 
-[[r2_buckets]]
+# Immagini dei commenti (Workers KV: niente carta di credito richiesta)
+[[kv_namespaces]]
 binding = "MEDIA"
-bucket_name = "idealista-commenti-media"
+id = "INSERISCI_KV_ID"
 
 # La chiave Giphy è un secret:  npx wrangler secret put GIPHY_API_KEY

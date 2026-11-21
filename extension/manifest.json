@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Idealista Commenti",
+  "name": "Commenti per idealista",
   "short_name": "Commenti",
   "version": "1.0.0",
-  "description": "Aggiunge i commenti sotto gli annunci di idealista: risposte, reazioni con le emoji, GIF e immagini, con il tuo profilo Chrome.",
+  "description": "Commenti, risposte, reazioni, GIF e immagini sotto gli annunci di idealista, con il tuo profilo Chrome. Non affiliato a idealista.",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk1EFxYR+5RJB67p8TYKFtoxFfTiKfvsVE/y5XblK71uil0Dt4qsYJ2OB2T8H+sIEwEWE8HyhFTaOdm9dCFUeaj2uFaypqOPhCzh2opFVkeTNOw/3yMBJBUUAvfsT/iPzn6mrgnXrmzUMJo1G733jp7wlTaE3KLM8uq0yuLljdg0G+rkluj4wAY0kfUvvX35SscxRJ9pLOc0Zl5/SDpk0fHNEJGFZ+/1E206Zw4h0wO+FZmhO9lLVMz1f3jGmqrPxMMXDsA6q6se55keSVRJ93xR9KdebBQaD264A1qO/dnmW07L6QZm6yf3HKTVsZslsdg5hnJsCLrOkzia4ZDrHQwIDAQAB",
   "minimum_chrome_version": "116",
   "permissions": ["identity", "storage"],
@@ -12,7 +12,7 @@
     "https://*.giphy.com/*"
   ],
   "oauth2": {
-    "client_id": "INSERISCI_CLIENT_ID.apps.googleusercontent.com",
+    "client_id": "740197553369-l64p9r56ij3kd4b6ra0btuaim13q14qi.apps.googleusercontent.com",
     "scopes": ["openid", "profile"]
   },
   "background": {
@@ -31,7 +31,7 @@
     }
   ],
   "action": {
-    "default_title": "Idealista Commenti",
+    "default_title": "Commenti per idealista",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",

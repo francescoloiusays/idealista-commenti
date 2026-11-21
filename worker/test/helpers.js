@@ -1,4 +1,4 @@
-// Mock condivisi: D1 su node:sqlite, R2 in memoria, Google e Giphy finti.
+// Mock condivisi: D1 su node:sqlite, KV in memoria, Google e Giphy finti.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
@@ -39,18 +39,19 @@ export function makeD1() {
   };
 }
 
-export function makeR2() {
+// KV simulato (solo i metodi usati dal Worker)
+export function makeKV() {
   const store = new Map();
   return {
     store,
-    put: async (k, v, o) => store.set(k, { body: v, httpMetadata: o?.httpMetadata }),
-    get: async (k) => store.get(k) || null,
+    put: async (k, v, o) => store.set(k, { value: new Uint8Array(v).buffer, metadata: o?.metadata ?? null }),
+    getWithMetadata: async (k) => store.get(k) || { value: null, metadata: null },
     delete: async (k) => store.delete(k),
   };
 }
 
 export function makeEnv() {
-  return { DB: makeD1(), MEDIA: makeR2(), GOOGLE_CLIENT_ID: CLIENT_ID, GIPHY_API_KEY: 'giphy-key' };
+  return { DB: makeD1(), MEDIA: makeKV(), GOOGLE_CLIENT_ID: CLIENT_ID, GIPHY_API_KEY: 'giphy-key' };
 }
 
 export const fakeExternalFetch = async (input, init = {}) => {

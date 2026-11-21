@@ -1,4 +1,4 @@
-// Test del Worker con D1 simulato (node:sqlite), R2 in memoria e Google/Giphy finti.
+// Test del Worker con D1 simulato (node:sqlite), KV in memoria e Google/Giphy finti.
 // Esegui con: node --test test/
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';

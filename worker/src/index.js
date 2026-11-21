@@ -1,5 +1,5 @@
 /**
- * Idealista Commenti — backend (Cloudflare Worker + D1 + R2)
+ * Commenti per idealista — backend (Cloudflare Worker + D1 + KV)
  *
  * Rotte:
  *   GET    /api/comments?listing=it:12345678    commenti di un annuncio (lettura pubblica)
@@ -411,18 +411,18 @@ async function uploadImage(request, env, url) {
   if (!type) throw new HttpError(415, 'Formato non supportato: usa JPG, PNG, WebP o GIF');
 
   const key = `${crypto.randomUUID()}.${IMAGE_TYPES[type]}`;
-  await env.MEDIA.put(key, buf, { httpMetadata: { contentType: type } });
+  await env.MEDIA.put(key, buf, { metadata: { contentType: type } });
   await env.DB.prepare('INSERT INTO uploads (key, user_id, created_at) VALUES (?, ?, ?)').bind(key, user.id, Date.now()).run();
   return json({ key, url: mediaUrl(url, key) }, 201);
 }
 
 async function serveMedia(env, key) {
   if (!MEDIA_KEY_RE.test(key)) throw new HttpError(404, 'File non trovato');
-  const obj = await env.MEDIA.get(key);
-  if (!obj) throw new HttpError(404, 'File non trovato');
-  return new Response(obj.body, {
+  const { value, metadata } = await env.MEDIA.getWithMetadata(key, { type: 'arrayBuffer' });
+  if (!value) throw new HttpError(404, 'File non trovato');
+  return new Response(value, {
     headers: {
-      'Content-Type': obj.httpMetadata?.contentType || 'application/octet-stream',
+      'Content-Type': metadata?.contentType || 'application/octet-stream',
       'Cache-Control': 'public, max-age=31536000, immutable',
       'X-Content-Type-Options': 'nosniff',
       'Cross-Origin-Resource-Policy': 'cross-origin',
